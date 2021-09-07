@@ -19,7 +19,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  andriod: "launcher_icon"
+  android: "launcher_icon"
   ios: true
   image_path: "assets/popcat1.png"
 
