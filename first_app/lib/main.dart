@@ -1,3 +1,5 @@
+import 'package:firebase_core/firebase_core.dart';
+import 'package:first_app/controllers/todo.dart';
 import 'package:first_app/models/first_form_model.dart';
 import 'package:first_app/pages/eighth_page.dart';
 import 'package:first_app/pages/todo_page.dart';
@@ -5,20 +7,32 @@ import 'package:first_app/services/services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'controllers/todo.dart';
 import 'pages/fifth_page.dart';
 import 'pages/first_page.dart';
-import 'pages/forth_page.dart';
+import 'pages/fourth_page.dart';
 import 'pages/second_page.dart';
+import 'pages/seventh_page.dart';
 import 'pages/sixth_page.dart';
 import 'pages/third_page.dart';
-import 'pages/seventh_page.dart';
 
-void main() {
-  var services = HttpServices();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+  var services = FirebaseServices();
   var controller = TodoController(services);
 
   runApp(TodoApp(controller: controller));
+//   runApp(
+//     MultiProvider(
+//       providers: [
+//         ChangeNotifierProvider(
+//           create: (context) => FirstFormModel(),
+//         ),
+//       ],
+//       child: MyApp(),
+//     ),
+//   );
 }
 
 class TodoApp extends StatelessWidget {
@@ -42,7 +56,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primaryColor: Colors.amber,
-          accentColor: Colors.orange,
+          accentColor: Colors.blue[200],
           textTheme: TextTheme(
             bodyText2: TextStyle(color: Colors.purple),
           ),
@@ -113,10 +127,10 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Container(
               height: 150.0,
-              margin: EdgeInsets.only(left: 100, right: 100.0, bottom: 25.0),
+              margin: EdgeInsets.only(left: 100, right: 100.0, bottom: 20.0),
               padding: EdgeInsets.all(8.0),
               decoration: BoxDecoration(
-                color: Colors.amber.withOpacity(0.1),
+                color: Colors.amber.withOpacity(0.25),
                 borderRadius: BorderRadius.circular(10.0),
               ),
               child: cat,
